@@ -1,6 +1,7 @@
 
 import com.opencsv.CSVReader;
 //import com.opencsv.exceptions.CsvValidationException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,5 +42,15 @@ public class AnalyzingStateCensus {
         //return asc.sc.size();
         return scd.size();
         
+    }
+
+    public int checkingFileIfExists() throws CustomException {
+        File file = new File("IndiaStateCensusData1.csv");
+        if (file.exists()){
+            return 1;
+        }
+        else {
+            throw new CustomException("File not found");
+        }
     }
 }

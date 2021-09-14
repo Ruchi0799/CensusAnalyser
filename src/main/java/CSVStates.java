@@ -19,7 +19,9 @@ public class CSVStates {
 
     public int loadingDataFromCSV() throws IOException, CustomException {
         FileReader fr = new FileReader("StateCode.csv");
-        CSVReader csvReader = new CSVReader(fr);
+        //CSVReader csvReader = new CSVReader(fr);
+        CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
+        CSVReader csvReader = new CSVReaderBuilder(fr).withCSVParser(parser).build();
         String[] nextLine;
 
         nextLine = csvReader.readNext();
@@ -37,7 +39,7 @@ public class CSVStates {
             }
            catch (Exception e)
            {
-               throw new CustomException("Type Incorrect");
+               throw new CustomException("Type Incorrect or delimeter not proper");
            }
 
 

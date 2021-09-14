@@ -110,7 +110,18 @@ public class CensusAnalyserTest {
         }
     }
 
+    @Test
+    public void checkIfStateCodeDelimeter_IsCorrect_IfNot_ReturnException(){
+        try {
+            CSVStates isc = new CSVStates();
+            isc.loadingDataFromCSV();
+            Assert.assertEquals(74,isc.loadingDataFromCSV());
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+    }
 
-    
+
 
 }

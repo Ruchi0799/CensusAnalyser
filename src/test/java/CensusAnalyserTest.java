@@ -123,5 +123,18 @@ public class CensusAnalyserTest {
     }
 
 
+    @Test
+    public void checkIfStateCodeHeader_IsCorrect_IfNot_ReturnException(){
+        try {
+            CSVStates isc = new CSVStates();
+            isc.loadingDataFromCSV();
+            Assert.assertEquals(74,isc.loadingDataFromCSV());
+        }
+        catch (CustomException | IOException e){
+            System.out.println(e.getMessage());
+            e.getMessage();
+        }
+    }
+
 
 }

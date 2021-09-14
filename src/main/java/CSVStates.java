@@ -16,11 +16,6 @@ public class CSVStates {
     ArrayList<StateCodeData> scd1 = new ArrayList<>();
     StateCodeData tempObj;
 
-//    public static void main(String[] args) throws IOException {
-//        AnalyzingStateCensus asc = new AnalyzingStateCensus();
-//        asc.loadingDataFromCSV();
-//        System.out.println(asc.scd.size());
-//    }
 
     public int loadingDataFromCSV() throws IOException {
         FileReader fr = new FileReader("StateCode.csv");
@@ -31,10 +26,6 @@ public class CSVStates {
         while((nextLine =csvReader.readNext())!=null){
 
             Iterator<String> it = Arrays.stream(nextLine).iterator();
-//            String state = it.next();
-//            String  population = it.next();
-//            String areaInSqKm = it.next();
-//            String DensityPerSqKm = it.next();
 
             String SrNo= it.next();
             String StateName= it.next();
@@ -48,6 +39,17 @@ public class CSVStates {
         //return asc.sc.size();
         return scd1.size();
 
+    }
+
+
+    public int checkingFileIfExists() throws CustomException {
+        File file = new File("StateCode.csv");
+        if (file.exists()){
+            return 1;
+        }
+        else {
+            throw new CustomException("File not found");
+        }
     }
 }
 

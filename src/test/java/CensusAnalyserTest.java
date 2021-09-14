@@ -78,5 +78,28 @@ public class CensusAnalyserTest {
         Assert.assertEquals(37,asc1.scd1.size());
     }
 
+    @Test
+    public void checkStateCodeCSV_IsCorrect(){
+        try {
+            CSVStates isc = new CSVStates();
+            Assert.assertEquals(1,isc.checkingFileIfExists());
+        } catch (CustomException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void checkStateCodeCSV_IsCorrect_IfNotReturnCustomMessage(){
+        try {
+            CSVStates isc = new CSVStates();
+            Assert.assertEquals("File not found",isc.checkingFileIfExists());
+        } catch (CustomException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
 }

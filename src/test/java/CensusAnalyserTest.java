@@ -71,5 +71,12 @@ public class CensusAnalyserTest {
         }
     }
 
+    @Test
+    public void LoadCSVFileState_AndReturnFileSize() throws IOException, CustomException {
+        CSVStates asc1 = new CSVStates();
+        asc1.loadingDataFromCSV();
+        Assert.assertEquals(37,asc1.scd1.size());
+    }
+
 
 }

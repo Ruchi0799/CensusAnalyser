@@ -1,5 +1,8 @@
 
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import name.finsterwalder.fileutils.FileUtils;
 //import com.opencsv.exceptions.CsvValidationException;
 import java.io.File;
@@ -25,28 +28,32 @@ public class AnalyzingStateCensus {
 //    }
 
     public int loadingDataFromCSV() throws IOException, CustomException {
-        FileReader fr = new FileReader("IndiaStateCensusData.csv");
-        CSVReader csvReader = new CSVReader(fr);
-        String[] nextLine;
-
-        nextLine = csvReader.readNext();
-        while((nextLine =csvReader.readNext())!=null){
-
-            Iterator<String> it = Arrays.stream(nextLine).iterator();
-            String state = it.next();
-            String  population = it.next();
-            String areaInSqKm = it.next();
-            String DensityPerSqKm = it.next();
         try {
-            tempObj = new StateCensusData(state, Long.parseLong(population), Long.parseLong(areaInSqKm), Integer.parseInt(DensityPerSqKm));
-            scd.add(tempObj);
+            FileReader fr = new FileReader("IndiaStateCensusData.csv");
+            //CSVReader csvReader = new CSVReader(fr);
+            CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
+            CSVReader csvReader = new CSVReaderBuilder(fr).withCSVParser(parser).build();
+            String[] nextLine;
+
+            nextLine = csvReader.readNext();
+            while ((nextLine = csvReader.readNext()) != null) {
+
+                Iterator<String> it = Arrays.stream(nextLine).iterator();
+                String state = it.next();
+                String population = it.next();
+                String areaInSqKm = it.next();
+                String DensityPerSqKm = it.next();
+
+                tempObj = new StateCensusData(state, Long.parseLong(population), Long.parseLong(areaInSqKm), Integer.parseInt(DensityPerSqKm));
+                scd.add(tempObj);
+            }
         }
         catch (Exception e)
         {
-            throw new CustomException("Type incorrect");
+            throw new CustomException("Type incorrect or delimeter not proper ");
         }
 
-        }
+
         System.out.println();
         //return asc.sc.size();
         return scd.size();

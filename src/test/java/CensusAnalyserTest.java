@@ -45,4 +45,17 @@ public class CensusAnalyserTest {
     }
 
 
+    @Test
+    public void checkIfDelimeter_IsCorrect_IfNot_ReturnException(){
+        try {
+            AnalyzingStateCensus isc = new AnalyzingStateCensus();
+            isc.loadingDataFromCSV();
+            Assert.assertEquals(58,isc.loadingDataFromCSV());
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+    }
+
+
 }

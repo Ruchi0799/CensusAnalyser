@@ -110,9 +110,7 @@ public class CensusAnalyserTest {
         }
     }
 
+
     
-
-
-
 
 }

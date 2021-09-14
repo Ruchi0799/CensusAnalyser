@@ -53,6 +53,20 @@ public class CensusAnalyserTest {
             Assert.assertEquals(58,isc.loadingDataFromCSV());
         }
         catch (Exception e){
+            System.out.println(e.getMessage());
+            e.getMessage();
+        }
+    }
+
+    @Test
+    public void checkIfHeader_IsCorrect_IfNot_ReturnException(){
+        try {
+            AnalyzingStateCensus isc = new AnalyzingStateCensus();
+            isc.loadingDataFromCSV();
+            Assert.assertEquals(58,isc.loadingDataFromCSV());
+        }
+        catch (CustomException | IOException e){
+            System.out.println(e.getMessage());
             e.getMessage();
         }
     }

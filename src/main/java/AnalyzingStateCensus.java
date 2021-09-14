@@ -36,6 +36,15 @@ public class AnalyzingStateCensus {
             String[] nextLine;
 
             nextLine = csvReader.readNext();
+           // try{
+                if (nextLine[0].equals("State") && nextLine[1].equals("Population") && nextLine[2].equals("AreaInSqKm") && nextLine[3].equals("DensityPerSqKm")  ){
+                }
+               else{throw new CustomException("Incorrect header");
+                }
+//            }
+//            catch (CustomException e){
+//                throw new CustomException("Incorrect header");
+//            }
             while ((nextLine = csvReader.readNext()) != null) {
 
                 Iterator<String> it = Arrays.stream(nextLine).iterator();
@@ -47,6 +56,10 @@ public class AnalyzingStateCensus {
                 tempObj = new StateCensusData(state, Long.parseLong(population), Long.parseLong(areaInSqKm), Integer.parseInt(DensityPerSqKm));
                 scd.add(tempObj);
             }
+        }
+        catch (CustomException e)
+        {
+            throw new CustomException("Incorrect header");
         }
         catch (Exception e)
         {

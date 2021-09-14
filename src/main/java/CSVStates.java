@@ -17,7 +17,7 @@ public class CSVStates {
     StateCodeData tempObj;
 
 
-    public int loadingDataFromCSV() throws IOException {
+    public int loadingDataFromCSV() throws IOException, CustomException {
         FileReader fr = new FileReader("StateCode.csv");
         CSVReader csvReader = new CSVReader(fr);
         String[] nextLine;
@@ -31,9 +31,17 @@ public class CSVStates {
             String StateName= it.next();
             String TIN= it.next();
             String StateCode= it.next();
+            try {
+                tempObj = new StateCodeData(Integer.parseInt(SrNo),StateName, Integer.parseInt(TIN),StateCode);
+                scd1.add(tempObj);
+            }
+           catch (Exception e)
+           {
+               throw new CustomException("Type Incorrect");
+           }
 
-            tempObj = new StateCodeData(Integer.parseInt(SrNo),StateName, Integer.parseInt(TIN),StateCode);
-            scd1.add(tempObj);
+
+
         }
         System.out.println();
         //return asc.sc.size();

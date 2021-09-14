@@ -98,6 +98,19 @@ public class CensusAnalyserTest {
         }
     }
 
+    @Test
+    public void checking_IfStateCodeFileCorrect_ButTypeIncorrect(){
+        try {
+            CSVStates isc = new CSVStates();
+            isc.loadingDataFromCSV();
+            Assert.assertEquals(74,isc.loadingDataFromCSV());
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+    }
+
+    
 
 
 
